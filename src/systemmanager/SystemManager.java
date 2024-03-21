@@ -4,6 +4,7 @@
  */
 package systemmanager;
 
+import java.sql.SQLException;
 import static systemmanager.MainSystemMenu.displayMainMenu;
 
 /**
@@ -15,8 +16,11 @@ public class SystemManager {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        displayMainMenu();
+    public static void main(String[] args) throws SQLException {
+        DatabaseConnection dc = new DatabaseConnection();
+        dc.newUserTable("newUsers");
+        
+        //displayMainMenu();
     }
     
 }
