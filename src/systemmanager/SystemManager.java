@@ -4,6 +4,8 @@
  */
 package systemmanager;
 
+import static systemmanager.MainSystemMenu.displayMainMenu;
+
 /**
  *
  * @author under
@@ -14,7 +16,7 @@ public class SystemManager {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        displayMainMenu();
     }
     
 }
