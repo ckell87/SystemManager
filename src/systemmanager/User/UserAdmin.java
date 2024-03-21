@@ -9,5 +9,10 @@ package systemmanager.User;
  * @author under
  */
 public class UserAdmin {
-    
+    private String username;
+    private String password;
+
+    public static boolean authenticate(String username, String password) {
+        return username.equals("admin") && password.equals("java");
+}
 }
