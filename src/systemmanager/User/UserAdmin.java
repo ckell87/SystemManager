@@ -12,7 +12,7 @@ public class UserAdmin {
     private String username;
     private String password;
 
-    public static boolean authenticate(String username, String password) {
-        return username.equals("admin") && password.equals("java");
+    public static boolean authenticateFirstUser(String username, String password, String role) {
+        return username.equals("admin") && password.equals("java") && role.equals("admin");
 }
 }
