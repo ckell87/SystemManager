@@ -18,9 +18,9 @@ public class SystemManager {
      */
     public static void main(String[] args) throws SQLException {
         DatabaseConnection dc = new DatabaseConnection();
-        dc.newUserTable("newUsers");
+         // dc.newUserTable("newUsers"); create table to store new users
         
-        //displayMainMenu();
+        displayMainMenu();
     }
     
 }
