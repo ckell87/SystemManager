@@ -4,6 +4,7 @@
  */
 package systemmanager;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import systemmanager.User.ManageAdmin;
 import systemmanager.User.UserAdmin;
@@ -16,7 +17,7 @@ import systemmanager.DatabaseConnection;
  * @author under
  */
 public class MainSystemMenu {
-    public static void displayMainMenu() {
+    public static void displayMainMenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("Please choose a number from the menu below");
@@ -36,7 +37,7 @@ public class MainSystemMenu {
                     String password = sc.nextLine().toLowerCase().trim();
                     System.out.print("Enter role (either admin, office or lecturer) ");
                     String role = sc.nextLine().toLowerCase().trim();
-                    if (DatabaseConnection.authenticateUser(username, password, role)) {
+                    if (DatabaseConnection.authenticateAdminUser(username, password, role)) {
                         System.out.println("Login successful. Welcome " + username);
                         ManageAdmin manageAdmin = new ManageAdmin();
                         manageAdmin.adminManager();
