@@ -36,35 +36,7 @@ public class DatabaseConnection {
 
     }
      */
-    public static void addNewUser() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter first name ");
-        String first_name = sc.nextLine();
-        System.out.println("Enter last name ");
-        String last_name = sc.nextLine();
-        System.out.println("Enter username ");
-        String username = sc.nextLine();
-        System.out.println("Enter password ");
-        String password = sc.nextLine();
-        System.out.println("Enter role ");
-        String role = sc.nextLine();
-
-        // Insert new user into database
-        try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
-            // Select the CA2 database
-            stmt.execute("USE CA2;");
-
-            // Insert new user into newUsers table
-            String query = "INSERT INTO newUsers (first_name, last_name, username, password, role) VALUES ('" + first_name + "', '" + last_name + "', '" + username + "', '" + password + "', '" + role + "')";
-            stmt.executeUpdate(query);
-
-            System.out.println("New user added successfully.");
-        } catch (SQLException e) {
-            System.out.println("Error adding new user " + e.getMessage());
-        }
-    }
-
-    public static boolean authenticateUser(String username, String password, String role) throws SQLException { // Check if username, password and role match the input
+    public static boolean authenticateAdminUser(String username, String password, String role) throws SQLException { // Check if username, password and role match the input
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
             try ( Statement stmt = conn.createStatement()) {
                 stmt.execute("USE CA2;");
@@ -78,7 +50,7 @@ public class DatabaseConnection {
                             String findPassword = rs.getString("password");
                             String findRole = rs.getString("role");
 
-                            if (username.equals(findUsername) && password.equals(findPassword) && role.equals(findRole)) {
+                            if (username.equals(findUsername) && password.equals(findPassword) && "admin".equals(findRole)) {
                                 return true; // login details match
                             } else {
                                 return false; // login failed
@@ -86,11 +58,13 @@ public class DatabaseConnection {
                         }
                     }
                 } catch (SQLException e) {
-                     e.printStackTrace();
+                    e.printStackTrace();
 
                 }
                 return false;
             }
         }
     }
+
+    
 }
