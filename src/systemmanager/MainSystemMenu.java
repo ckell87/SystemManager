@@ -7,6 +7,8 @@ package systemmanager;
 import java.util.Scanner;
 import systemmanager.User.ManageAdmin;
 import systemmanager.User.UserAdmin;
+import systemmanager.DatabaseConnection;
+
 
 /**Main menu created for each type of faculty.
  * username and password protected
@@ -34,7 +36,7 @@ public class MainSystemMenu {
                     String password = sc.nextLine().toLowerCase().trim();
                     System.out.print("Enter role (either admin, office or lecturer) ");
                     String role = sc.nextLine().toLowerCase().trim();
-                    if (UserAdmin.authenticateFirstUser(username, password, role)) {
+                    if (DatabaseConnection.authenticateUser(username, password, role)) {
                         System.out.println("Login successful. Welcome " + username);
                         ManageAdmin manageAdmin = new ManageAdmin();
                         manageAdmin.adminManager();
