@@ -29,15 +29,17 @@ public class MainSystemMenu {
             switch (choice) {
                 case 1:
                     System.out.print("Enter username ");
-                    String username = sc.nextLine();
+                    String username = sc.nextLine().toLowerCase().trim();
                     System.out.print("Enter password ");
-                    String password = sc.nextLine();
-                    if (UserAdmin.authenticate(username, password)) {
+                    String password = sc.nextLine().toLowerCase().trim();
+                    System.out.print("Enter role (either admin, office or lecturer) ");
+                    String role = sc.nextLine().toLowerCase().trim();
+                    if (UserAdmin.authenticateFirstUser(username, password, role)) {
                         System.out.println("Login successful. Welcome " + username);
                         ManageAdmin manageAdmin = new ManageAdmin();
                         manageAdmin.adminManager();
                     } else {
-                        System.out.println("Login failed. Incorrect username or password.");
+                        System.out.println("Login failed. Incorrect username, password or user ");
                     }
                     break;
                 case 2:
