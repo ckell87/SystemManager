@@ -9,6 +9,7 @@ import java.util.Scanner;
 import systemmanager.User.ManageAdmin;
 import systemmanager.User.UserAdmin;
 import systemmanager.DatabaseConnection;
+import systemmanager.User.ManageOffice;
 
 /**
  * Main menu created for each type of faculty. username and password protected
@@ -33,13 +34,13 @@ public class MainSystemMenu {
             switch (choice) {
                 case 1:
                     System.out.print("Enter username ");
-                    String username = sc.nextLine().toLowerCase().trim();
+                    String adminUsername = sc.nextLine().toLowerCase().trim();
                     System.out.print("Enter password ");
-                    String password = sc.nextLine().toLowerCase().trim();
+                    String adminPassword = sc.nextLine().toLowerCase().trim();
                     System.out.print("Enter role (either admin, office or lecturer) ");
-                    String role = sc.nextLine().toLowerCase().trim();
-                    if (DatabaseConnection.authenticateAdminUser(username, password, role)) {
-                        System.out.println("Login successful. Welcome " + username);
+                    String adminRole = sc.nextLine().toLowerCase().trim();
+                    if (DatabaseConnection.authenticateAdminUser(adminUsername, adminPassword, adminRole)) {
+                        System.out.println("Login successful. Welcome " + adminUsername);
                         ManageAdmin manageAdmin = new ManageAdmin();
                         manageAdmin.adminManager();
                     } else {
@@ -47,7 +48,19 @@ public class MainSystemMenu {
                     }
                     break;
                 case 2:
-                    //  Office user login
+                    System.out.print("Enter username ");
+                    String officeUsername = sc.nextLine().toLowerCase().trim();
+                    System.out.print("Enter password ");
+                    String officePassword = sc.nextLine().toLowerCase().trim();
+                    System.out.print("Enter role (either admin, office or lecturer) ");
+                    String officeRole = sc.nextLine().toLowerCase().trim();
+                    if (DatabaseConnection.authenticateOfficeUser(officeUsername, officePassword, officeRole)) {
+                        System.out.println("Login successful. Welcome " + officeUsername);
+                        ManageOffice manageOffice = new ManageOffice();
+                        manageOffice.officeManager();
+                    } else {
+                        System.out.println("Login failed. Incorrect username, password or user ");
+                    }
                     break;
                 case 3:
                     //  Lecturer user login
