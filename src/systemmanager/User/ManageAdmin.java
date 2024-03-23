@@ -63,13 +63,13 @@ public class ManageAdmin {
         System.out.println("Enter role  ");
         String role = sc.nextLine().toLowerCase();
 
-                        // Insert new user into database
+        // Insert new user into database
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
-                        // Select the CA2 database
+            // Select the CA2 database
             stmt.execute("USE CA2;");
 
-                         // Insert new user into newUsers table
-            String query = "INSERT INTO newUsers (first_name, last_name, username, password, role) VALUES ('" + first_name + "', '" + last_name + "', '" + username + "', '" + password + "', '" + role + "')";
+            // Insert new user into newUsers table
+            String query = "INSERT INTO staff (first_name, last_name, username, password, role) VALUES ('" + first_name + "', '" + last_name + "', '" + username + "', '" + password + "', '" + role + "')";
             stmt.executeUpdate(query);
 
             System.out.println("New user added successfully.");
