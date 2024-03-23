@@ -79,8 +79,7 @@ public class DatabaseConnection {
         }
     }
 
-
-public static boolean authenticateOfficeUser(String username, String password, String role) throws SQLException { // Check if username, password and role match the input
+    public static boolean authenticateOfficeUser(String username, String password, String role) throws SQLException { // Check if username, password and role match the input
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
             try ( Statement stmt = conn.createStatement()) {
                 stmt.execute("USE CA2;");
@@ -110,4 +109,27 @@ public static boolean authenticateOfficeUser(String username, String password, S
         }
     }
 
+    public static void updateOfficeUsername(String username, String newUsername) throws SQLException {
+        try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
+            stmt.execute("USE CA2;");
+            String updatePassword = "UPDATE staff SET username = ? WHERE username = ?";
+            try ( PreparedStatement pstmt = conn.prepareStatement(updatePassword)) {
+                pstmt.setString(1, newUsername);
+                pstmt.setString(2, username);
+                pstmt.executeUpdate();
+            }
+        }
+    }
+
+    public static void updateOfficePassword(String username, String newPassword) throws SQLException {
+        try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
+            stmt.execute("USE CA2;");
+            String updatePassword = "UPDATE staff SET password = ? WHERE username = ?";
+            try ( PreparedStatement pstmt = conn.prepareStatement(updatePassword)) {
+                pstmt.setString(1, newPassword);
+                pstmt.setString(2, username);
+                pstmt.executeUpdate();
+            }
+        }
+    }
 }
