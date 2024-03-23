@@ -10,13 +10,14 @@ import systemmanager.User.ManageAdmin;
 import systemmanager.User.UserAdmin;
 import systemmanager.DatabaseConnection;
 
-
-/**Main menu created for each type of faculty.
+/**Main menu created for each type of faculty. 
  * username and password protected
  *each case will bring user to next menu once authenticated.
+ *
  * @author under
  */
 public class MainSystemMenu {
+
     public static void displayMainMenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -43,6 +44,7 @@ public class MainSystemMenu {
                         manageAdmin.adminManager();
                     } else {
                         System.out.println("Login failed. Incorrect username, password or user ");
+
                     }
                     break;
                 case 2:
