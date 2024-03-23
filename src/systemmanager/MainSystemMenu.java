@@ -7,8 +7,8 @@ package systemmanager;
 import java.sql.SQLException;
 import java.util.Scanner;
 import systemmanager.User.ManageAdmin;
-import systemmanager.User.UserAdmin;
 import systemmanager.DatabaseConnection;
+import systemmanager.User.ManageLecturer;
 import systemmanager.User.ManageOffice;
 
 /**
@@ -34,17 +34,17 @@ public class MainSystemMenu {
             switch (choice) {
                 case 1:
                     System.out.print("Enter username ");
-                    String adminUsername = sc.nextLine().toLowerCase().trim();
+                    String adminUsername = sc.nextLine().toLowerCase().trim();// remove white space and change to all lower caps
                     System.out.print("Enter password ");
                     String adminPassword = sc.nextLine().toLowerCase().trim();
                     System.out.print("Enter role (either admin, office or lecturer) ");
                     String adminRole = sc.nextLine().toLowerCase().trim();
-                    if (DatabaseConnection.authenticateAdminUser(adminUsername, adminPassword, adminRole)) {
+                    if (DatabaseConnection.authenticateAdminUser(adminUsername, adminPassword, adminRole)) { // role used to check against database to authorise correct sub menu i.e admin role
                         System.out.println("Login successful. Welcome " + adminUsername);
                         ManageAdmin manageAdmin = new ManageAdmin();
-                        manageAdmin.adminManager();
+                        manageAdmin.adminManager(); //call up admin console menu
                     } else {
-                        System.out.println("Login failed. Incorrect username, password or user ");
+                        System.out.println("Login failed. Incorrect username, password or user "); // will go back to main menu again
                     }
                     break;
                 case 2:
@@ -54,16 +54,26 @@ public class MainSystemMenu {
                     String officePassword = sc.nextLine().toLowerCase().trim();
                     System.out.print("Enter role (either admin, office or lecturer) ");
                     String officeRole = sc.nextLine().toLowerCase().trim();
-                    if (DatabaseConnection.authenticateOfficeUser(officeUsername, officePassword, officeRole)) {
+                    if (DatabaseConnection.authenticateOfficeUser(officeUsername, officePassword, officeRole)) { // role used to check against database to authorise correct sub menu ie. office role
                         System.out.println("Login successful. Welcome " + officeUsername);
                         ManageOffice manageOffice = new ManageOffice();
-                        manageOffice.officeManager();
+                        manageOffice.officeManager(); // call up office console menu
                     } else {
                         System.out.println("Login failed. Incorrect username, password or user ");
                     }
                     break;
                 case 3:
-                    //  Lecturer user login
+                    System.out.print("Enter username ");
+                    String lecturerUsername = sc.nextLine().toLowerCase().trim();
+                    System.out.print("Enter password ");
+                    String lecturerPassword = sc.nextLine().toLowerCase().trim();
+                    System.out.print("Enter role (either admin, office or lecturer) ");
+                    String lecturerRole = sc.nextLine().toLowerCase().trim();
+                    if (DatabaseConnection.authenticateLecturer(lecturerUsername, lecturerPassword, lecturerRole)) { //// role used to check against database to authorise correct sub menu ie. lecturer role
+                        System.out.println("Login successful. Welcome " + lecturerUsername);
+                        ManageLecturer manageLecturer = new ManageLecturer();
+                        manageLecturer.lecturerManager(); // call up lecturer console menu
+                    }
                     break;
                 case 4:
                     System.out.println("Exiting menu");
