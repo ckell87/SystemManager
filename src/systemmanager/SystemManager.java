@@ -18,11 +18,11 @@ public class SystemManager {
      */
     public static void main(String[] args) throws SQLException {
         DatabaseConnection dc = new DatabaseConnection();
-         //dc.dropTable("newUsers"); 
+        //dc.dropTable("newUsers"); 
         //dc.renameTable();
-         //dc.alterTable();
-        //displayMainMenu();
-        
+        //dc.alterTable();
+        displayMainMenu();
+
     }
-    
+
 }
