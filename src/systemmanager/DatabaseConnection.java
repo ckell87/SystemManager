@@ -53,7 +53,7 @@ public class DatabaseConnection {
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
             try ( Statement stmt = conn.createStatement()) {
                 stmt.execute("USE CA2;");
-                String findDetails = "SELECT username, password, role FROM newUsers WHERE username = ? AND password = ?"; //username and password hidden using placeholders
+                String findDetails = "SELECT username, password, role FROM staff WHERE username = ? AND password = ?"; //username and password hidden using placeholders
                 try ( PreparedStatement pstmt = conn.prepareStatement(findDetails)) {
                     pstmt.setString(1, username);
                     pstmt.setString(2, password);
@@ -63,7 +63,7 @@ public class DatabaseConnection {
                             String findPassword = rs.getString("password");
                             String findRole = rs.getString("role");
 
-                            if (username.equals(findUsername) && password.equals(findPassword) && "admin".equals(findRole)) {
+                            if (username.equals(findUsername) && password.equals(findPassword) && role.equalsIgnoreCase("admin")) {
                                 return true; // login details match
                             } else {
                                 return false; // login failed
