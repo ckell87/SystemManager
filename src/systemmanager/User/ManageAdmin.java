@@ -52,50 +52,134 @@ public class ManageAdmin {
 
     public static void addNewUser() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter role of new user (must be admin, office, or lecturer)");
+        String role = sc.nextLine().toLowerCase();
+
+        switch (role) {
+            case "admin":
+                addAdminUser();
+                break;
+            case "office":
+                addOfficeUser();
+                break;
+            case "lecturer":
+                addLecturer();
+                break;
+            default:
+                System.out.println("Invalid role entered");
+                break;
+        }
+    }
+
+    public static void addAdminUser() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Enter first name ");
-        String first_name = sc.nextLine().toLowerCase();
+        String fname = sc.nextLine().toLowerCase();
         System.out.println("Enter last name ");
-        String last_name = sc.nextLine().toLowerCase();
+        String lname = sc.nextLine().toLowerCase();
         System.out.println("Enter username ");
         String username = sc.nextLine();
         System.out.println("Enter password ");
         String password = sc.nextLine();
-        System.out.println("Enter role  ");
-        String role = sc.nextLine().toLowerCase();
 
         // Insert new user into database
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
             // Select the CA2 database
             stmt.execute("USE CA2;");
+            String addAdminUser = "INSERT INTO staff (fname, lname, username, password, role) VALUES ('" + fname + "', '" + lname + "', '" + username + "', '" + password + "', ' admin ')";
+            stmt.executeUpdate(addAdminUser); // Insert new user into staff table
 
-            // Insert new user into newUsers table
-            String query = "INSERT INTO staff (first_name, last_name, username, password, role) VALUES ('" + first_name + "', '" + last_name + "', '" + username + "', '" + password + "', '" + role + "')";
-            stmt.executeUpdate(query);
-
-            System.out.println("New user added successfully.");
+            System.out.println(fname + lname + " added successfully.");
         } catch (SQLException e) {
-            System.out.println("Error adding new user " + e.getMessage());
+            System.out.println("Error adding" + fname + lname + e.getMessage());
+        }
+    }
+
+    public static void addOfficeUser() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter first name ");
+        String fname = sc.nextLine().toLowerCase();
+        System.out.println("Enter last name ");
+        String lname = sc.nextLine().toLowerCase();
+        System.out.println("Enter username ");
+        String username = sc.nextLine();
+        System.out.println("Enter password ");
+        String password = sc.nextLine();
+
+        // Insert new user into database
+        try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
+            // Select the CA2 database
+            stmt.execute("USE CA2;");
+            String addOfficeUser = "INSERT INTO staff (fname, lname, username, password, role) VALUES ('" + fname + "', '" + lname + "', '" + username + "', '" + password + "',  ' office ')";
+            stmt.executeUpdate(addOfficeUser); // Insert new user into staff table
+
+            System.out.println(fname + lname + " added successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error adding" + fname + lname + e.getMessage());
+        }
+    }
+
+    public static void addLecturer() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter first name ");
+        String fname = sc.nextLine().toLowerCase();
+        System.out.println("Enter last name ");
+        String lname = sc.nextLine().toLowerCase();
+        System.out.println("Enter username ");
+        String username = sc.nextLine();
+        System.out.println("Enter password ");
+        String password = sc.nextLine();
+        System.out.println("Enter title ");
+        String title = sc.nextLine().toLowerCase();
+        System.out.println("Enter module1 ");
+        String module1 = sc.nextLine().toLowerCase();
+        System.out.println("Enter module2 ");
+        String module2 = sc.nextLine();
+        System.out.println("module3 ");
+        String module3 = sc.nextLine();
+        System.out.println("module4 ");
+        String module4 = sc.nextLine().toLowerCase();
+        System.out.println("number of modules ");
+        int modNum = sc.nextInt();
+        System.out.println("class type ");
+        String classType = sc.nextLine();
+        System.out.println("course id ");
+        int course_id = sc.nextInt();
+
+        // Insert new user into database
+        try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
+            // Select the CA2 database
+            stmt.execute("USE CA2;");
+            String addLecturer = "INSERT INTO staff (fname, lname, username, password, role, title, module1, module2, module3, module4, modNum, classType, course_id) "
+                    + "VALUES ('" + fname + "', '" + lname + "', '" + username + "', '" + password + "', 'lecturer', '"
+                    + title + "', '" + module1 + "', '" + module2 + "', '" + module3 + "', '" + module4 + "', "
+                    + modNum + ", '" + classType + "', " + course_id + ")";
+            stmt.executeUpdate(addLecturer); // Insert new user into staff table
+
+            System.out.println(fname + lname + " added successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error adding" + fname + lname + e.getMessage());
         }
     }
 
     public static void deleteUser() throws SQLException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter last name of user for deletion ");
-        String last_name = sc.nextLine().toLowerCase();
+        String lname = sc.nextLine().toLowerCase();
         System.out.println("Enter username of user for deletion ");
         String username = sc.nextLine().toLowerCase();
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
             stmt.execute("USE CA2;");
-            String deleteUser = "DELETE FROM newUsers WHERE last_name = ? AND username = ?"; //placeholders used for security
+            String deleteUser = "DELETE FROM staff WHERE lname = ? AND username = ?"; //placeholders used for security
             try ( PreparedStatement pstmt = conn.prepareStatement(deleteUser)) {
-                pstmt.setString(1, last_name);
+                pstmt.setString(1, lname);
                 pstmt.setString(2, username);
 
                 int rows = pstmt.executeUpdate(); // checks for row modification  to establish sucessful excecution
                 if (rows > 0) {
                     System.out.println("Username: " + username + " deleted ");
                 } else {
-                    System.out.println("User last name " + last_name + " and username: " + username + "not found.");
+                    System.out.println("User last name " + lname + " and username: " + username + "not found.");
                 }
             }
         }
@@ -105,7 +189,7 @@ public class ManageAdmin {
     public static void updateUser() throws SQLException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter last name of user ");
-        String last_name = sc.nextLine().toLowerCase();
+        String lname = sc.nextLine().toLowerCase();
         System.out.println("Enter username of user  ");
         String username = sc.nextLine().toLowerCase();
         System.out.println("Enter new role for user  ");
@@ -113,16 +197,16 @@ public class ManageAdmin {
 
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
             stmt.execute("USE CA2;");
-            String updateUser = "UPDATE newUsers SET role = ? WHERE last_name = ? AND username = ?";
+            String updateUser = "UPDATE staff SET role = ? WHERE lname = ? AND username = ?";
             try ( PreparedStatement pstmt = conn.prepareStatement(updateUser)) {
                 pstmt.setString(1, new_role);
-                pstmt.setString(2, last_name);
+                pstmt.setString(2, lname);
                 pstmt.setString(3, username);
                 int rows = pstmt.executeUpdate();// checks for row modification  to establish sucessful excecution
                 if (rows > 0) {
                     System.out.println("Username: " + username + " updated to " + new_role + " role ");
                 } else {
-                    System.out.println("User " + last_name + " and username " + username + " not found ");
+                    System.out.println("User " + lname + " and username " + username + " not found ");
                 }
             }
         }
