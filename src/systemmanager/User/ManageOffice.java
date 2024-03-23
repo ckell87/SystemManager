@@ -66,7 +66,7 @@ public class ManageOffice {
             System.out.print("Enter your new username: ");
             String newUsername = sc.nextLine().trim();
             
-             DatabaseConnection.updateOfficeUsername(username, newUsername);//// Update the username in the database
+             DatabaseConnection.updateUsername(username, newUsername);//// Update the username in the database
             System.out.println("Username updated successfully.");
         } else {
             System.out.println("update failed. Incorrect username, password, or user role.");
@@ -82,7 +82,7 @@ public class ManageOffice {
             System.out.print("Enter your new password: ");
             String newPassword = sc.nextLine().trim();
             
-           DatabaseConnection.updateOfficePassword(username, newPassword); // Update the password in the database
+           DatabaseConnection.updatePassword(username, newPassword); // Update the password in the database
             System.out.println("Password updated successfully.");
         } else {
             System.out.println("Authentication failed. Incorrect username, password, or user role.");
