@@ -139,21 +139,19 @@ public class ManageAdmin {
         String module3 = sc.nextLine();
         System.out.println("module4 ");
         String module4 = sc.nextLine().toLowerCase();
-        System.out.println("number of modules ");
-        int modNum = sc.nextInt();
         System.out.println("class type ");
         String classType = sc.nextLine();
         System.out.println("course id ");
         int course_id = sc.nextInt();
 
-        // Insert new user into database
+        
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
             // Select the CA2 database
             stmt.execute("USE CA2;");
-            String addLecturer = "INSERT INTO staff (fname, lname, username, password, role, title, module1, module2, module3, module4, modNum, classType, course_id) "
-                    + "VALUES ('" + fname + "', '" + lname + "', '" + username + "', '" + password + "', 'lecturer', '"
-                    + title + "', '" + module1 + "', '" + module2 + "', '" + module3 + "', '" + module4 + "', "
-                    + modNum + ", '" + classType + "', " + course_id + ")";
+            String addLecturer = "INSERT INTO staff (fname, lname, username, password, role, title, module_1, module_2, module_3, module_4, class_Type, course_id) "
+                    + "VALUES ('" + fname + "', '" + lname + "', '" + username + "', '" + password + "', ' lecturer ', '"
+                    + title + "', '" + module1 + "', '" + module2 + "', '" + module3 + "', '" + module4 
+                    + "', '" + classType + "', " + course_id + ")";
             stmt.executeUpdate(addLecturer); // Insert new user into staff table
 
             System.out.println(fname + lname + " added successfully.");
@@ -177,7 +175,7 @@ public class ManageAdmin {
 
                 int rows = pstmt.executeUpdate(); // checks for row modification  to establish sucessful excecution
                 if (rows > 0) {
-                    System.out.println("Username: " + username + " deleted ");
+                    System.out.println("Username: " + username + " deleted "); //deletion confirmation
                 } else {
                     System.out.println("User last name " + lname + " and username: " + username + "not found.");
                 }
