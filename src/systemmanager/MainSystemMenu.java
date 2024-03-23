@@ -10,9 +10,9 @@ import systemmanager.User.ManageAdmin;
 import systemmanager.User.UserAdmin;
 import systemmanager.DatabaseConnection;
 
-/**Main menu created for each type of faculty. 
- * username and password protected
- *each case will bring user to next menu once authenticated.
+/**
+ * Main menu created for each type of faculty. username and password protected
+ * each case will bring user to next menu once authenticated.
  *
  * @author under
  */
@@ -44,7 +44,6 @@ public class MainSystemMenu {
                         manageAdmin.adminManager();
                     } else {
                         System.out.println("Login failed. Incorrect username, password or user ");
-
                     }
                     break;
                 case 2:
