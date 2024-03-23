@@ -21,7 +21,7 @@ public class SystemManager {
         //dc.dropTable("newUsers"); 
         //dc.renameTable();
         //dc.alterTable();
-        displayMainMenu();
+        displayMainMenu(); //call main menu for program
 
     }
 
