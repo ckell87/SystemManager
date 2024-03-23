@@ -79,4 +79,35 @@ public class DatabaseConnection {
         }
     }
 
+
+public static boolean authenticateOfficeUser(String username, String password, String role) throws SQLException { // Check if username, password and role match the input
+        try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
+            try ( Statement stmt = conn.createStatement()) {
+                stmt.execute("USE CA2;");
+                String findDetails = "SELECT username, password, role FROM staff WHERE username = ? AND password = ?"; //username and password hidden using placeholders
+                try ( PreparedStatement pstmt = conn.prepareStatement(findDetails)) {
+                    pstmt.setString(1, username);
+                    pstmt.setString(2, password);
+                    try ( ResultSet rs = pstmt.executeQuery()) {
+                        if (rs.next()) {
+                            String findUsername = rs.getString("username");
+                            String findPassword = rs.getString("password");
+                            String findRole = rs.getString("role");
+
+                            if (username.equals(findUsername) && password.equals(findPassword) && role.equalsIgnoreCase("office")) {
+                                return true; // login details match
+                            } else {
+                                return false; // login failed
+                            }
+                        }
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+
+                }
+                return false;
+            }
+        }
+    }
+
 }
