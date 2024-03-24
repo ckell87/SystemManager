@@ -55,34 +55,35 @@ public class ManageOffice {
         }
     }
 
-     public void changeUsername() throws SQLException {
+    public void changeUsername() throws SQLException {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your username: ");
         String username = sc.nextLine().trim();
         System.out.print("Enter your password: ");
         String password = sc.nextLine().trim();
-        
+
         if (DatabaseConnection.authenticateOfficeUser(username, password, "office")) { ////check user details before username change
             System.out.print("Enter your new username: ");
             String newUsername = sc.nextLine().trim();
-            
-             DatabaseConnection.updateUsername(username, newUsername);//// Update the username in the database
+
+            DatabaseConnection.updateUsername(username, newUsername);//// Update the username in the database
             System.out.println("Username updated successfully.");
         } else {
             System.out.println("update failed. Incorrect username, password, or user role.");
         }
     }
-     public void changePassword() throws SQLException {
+
+    public void changePassword() throws SQLException {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your username: ");
         String username = sc.nextLine().trim();
         System.out.print("Enter your password: ");
         String password = sc.nextLine().trim();
-         if (DatabaseConnection.authenticateOfficeUser(username, password, "office")) { //check user details before username change
+        if (DatabaseConnection.authenticateOfficeUser(username, password, "office")) { //check user details before username change
             System.out.print("Enter your new password: ");
             String newPassword = sc.nextLine().trim();
-            
-           DatabaseConnection.updatePassword(username, newPassword); // Update the password in the database
+
+            DatabaseConnection.updatePassword(username, newPassword); // Update the password in the database
             System.out.println("Password updated successfully.");
         } else {
             System.out.println("Authentication failed. Incorrect username, password, or user role.");

@@ -48,13 +48,14 @@ public class DatabaseConnection { //hard coded details to connect to local datab
             e.printStackTrace();
         }
     }
-/**
- * Authenticates  Admin users against details stored in the database.
- *  Their username, password and role are provided by the user.
- *  If they match, user authentication is successful, Admin sub console menu is opened
- * method is used to authorise  username and password change in ManageAdmin class also.
- *  SQLException If an SQL exception occurs during database operations.
- */
+
+    /**
+     * Authenticates Admin users against details stored in the database. Their
+     * username, password and role are provided by the user. If they match, user
+     * authentication is successful, Admin sub console menu is opened method is
+     * used to authorise username and password change in ManageAdmin class also.
+     * SQLException If an SQL exception occurs during database operations.
+     */
     public static boolean authenticateAdminUser(String username, String password, String role) throws SQLException { // Check if username, password and role match the input
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
             try ( Statement stmt = conn.createStatement()) {
@@ -84,13 +85,15 @@ public class DatabaseConnection { //hard coded details to connect to local datab
             }
         }
     }
- /**
- * Authenticates an Office user against details stored in the database.
- *  Their username, password and role are provided by the user.
- *  If they match, user authentication is successful, Office sub console menu is opened
- * method is used to authorise only their own username and password change in ManageOffice class also.
- *  SQLException If an SQL exception occurs during database operations.
- */
+
+    /**
+     * Authenticates an Office user against details stored in the database.
+     * Their username, password and role are provided by the user. If they
+     * match, user authentication is successful, Office sub console menu is
+     * opened method is used to authorise only their own username and password
+     * change in ManageOffice class also. SQLException If an SQL exception
+     * occurs during database operations.
+     */
     public static boolean authenticateOfficeUser(String username, String password, String role) throws SQLException { // Check if username, password and role match the input
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
             try ( Statement stmt = conn.createStatement()) {
@@ -105,7 +108,7 @@ public class DatabaseConnection { //hard coded details to connect to local datab
                             String findPassword = rs.getString("password");
                             String findRole = rs.getString("role");
 
-                            if (username.equals(findUsername) && password.equals(findPassword) && role.equalsIgnoreCase("office")) { 
+                            if (username.equals(findUsername) && password.equals(findPassword) && role.equalsIgnoreCase("office")) {
                                 return true; // login details match
                             } else {
                                 return false; // login failed, return to main menu
@@ -120,14 +123,16 @@ public class DatabaseConnection { //hard coded details to connect to local datab
             }
         }
     }
+
     /**
- * Authenticates a lecturer user against details stored in the database.
- *  The username, password and role are provided by the user.
- *  If they match, user authentication is successful, Lecturer sub console menu is opened
- * method is used to authorise only their own username and password change located in the ManageLecturer class also.
- *  SQLException If an SQL exception occurs during database operations.
- */
-public static boolean authenticateLecturer(String username, String password, String role) throws SQLException { // Check if username, password and role match the input
+     * Authenticates a lecturer user against details stored in the database. The
+     * username, password and role are provided by the user. If they match, user
+     * authentication is successful, Lecturer sub console menu is opened method
+     * is used to authorise only their own username and password change located
+     * in the ManageLecturer class also. SQLException If an SQL exception occurs
+     * during database operations.
+     */
+    public static boolean authenticateLecturer(String username, String password, String role) throws SQLException { // Check if username, password and role match the input
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
             try ( Statement stmt = conn.createStatement()) {
                 stmt.execute("USE CA2;");
@@ -136,13 +141,13 @@ public static boolean authenticateLecturer(String username, String password, Str
                     pstmt.setString(1, username);
                     pstmt.setString(2, password);
                     try ( ResultSet rs = pstmt.executeQuery()) { // details crossed checked by database
-                        if (rs.next()) {                           
+                        if (rs.next()) {
                             String findUsername = rs.getString("username");
                             String findPassword = rs.getString("password");
                             String findRole = rs.getString("role");
 
                             if (username.equals(findUsername) && password.equals(findPassword) && role.equalsIgnoreCase("lecturer")) {
-                                return true; 
+                                return true;
                             } else {
                                 return false; // login failed, return to main menu
                             }
@@ -157,10 +162,10 @@ public static boolean authenticateLecturer(String username, String password, Str
         }
     }
 
-/**
- * method used by all three users
- *  takes verified information from user management class and inserts new usnername in correct database column.
-*/
+    /**
+     * method used by all three users takes verified information from user
+     * management class and inserts new usnername in correct database column.
+     */
     public static void updateUsername(String username, String newUsername) throws SQLException {
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
             stmt.execute("USE CA2;");
@@ -174,10 +179,9 @@ public static boolean authenticateLecturer(String username, String password, Str
     }
 
     /**
- * method used by all three users
- *  takes verified information from user management class and inserts new password in correct database column.
-*/
-    
+     * method used by all three users takes verified information from user
+     * management class and inserts new password in correct database column.
+     */
     public static void updatePassword(String username, String newPassword) throws SQLException {
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
             stmt.execute("USE CA2;");
@@ -189,6 +193,5 @@ public static boolean authenticateLecturer(String username, String password, Str
             }
         }
     }
-    
-   
+
 }
