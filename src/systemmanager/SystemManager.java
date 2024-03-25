@@ -6,6 +6,7 @@ package systemmanager;
 
 import java.sql.SQLException;
 import static systemmanager.MainSystemMenu.displayMainMenu;
+import static systemmanager.Reports.CourseReport.generateCourseReport;
 
 /**
  *
@@ -21,8 +22,8 @@ public class SystemManager {
         //dc.dropTable("newUsers"); 
         //dc.renameTable();
         //dc.alterTable();
-        displayMainMenu(); //call main menu for program
-
+        //displayMainMenu(); //call main menu for program
+        generateCourseReport();
     }
 
 }
