@@ -4,6 +4,7 @@
  */
 package systemmanager;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -42,7 +43,7 @@ public class DatabaseConnection { //hard coded details to connect to local datab
 
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement()) {
             stmt.execute("USE CA2;");
-            stmt.execute("RENAME TABLE  lecturer  TO  staff;");
+            stmt.execute("RENAME TABLE lecturer TO staff;");
             System.out.println("Table renamed successfully.");
         } catch (SQLException e) {
             e.printStackTrace();
