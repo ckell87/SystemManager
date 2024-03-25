@@ -7,6 +7,7 @@ package systemmanager.User;
 import java.sql.SQLException;
 import java.util.Scanner;
 import systemmanager.DatabaseConnection;
+import static systemmanager.Reports.CourseReport.generateCourseReport;
 import static systemmanager.User.ManageAdmin.addNewUser;
 import static systemmanager.User.ManageAdmin.deleteUser;
 import static systemmanager.User.ManageAdmin.updateUser;
@@ -39,7 +40,7 @@ public class ManageOffice {
                 changePassword();
                 break;
             case 3:
-                //generateCourseReport();
+                generateCourseReport();
                 break;
             case 4:
                 //generateStudentReport();
