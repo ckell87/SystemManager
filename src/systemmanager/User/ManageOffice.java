@@ -43,7 +43,7 @@ public class ManageOffice {
                 generateCourseReport();
                 break;
             case 4:
-                //generateStudentReport();
+                generateStudentReport();
                 break;
             case 5:
                 //generateLecturerReport();
@@ -89,5 +89,9 @@ public class ManageOffice {
         } else {
             System.out.println("Authentication failed. Incorrect username, password, or user role.");
         }
+    }
+
+    private void generateStudentReport() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
