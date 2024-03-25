@@ -53,7 +53,6 @@ public class CourseReport {
                 + "GROUP BY s.module, c.course_name, staff.fname, staff.lname, c.room_number "
                 + "ORDER BY s.module";
 
-
         try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(query)) {
 
             // Create a FileWriter to write to the specified file format
@@ -68,7 +67,7 @@ public class CourseReport {
             while (rs.next()) {
                 String module = rs.getString("module");
                 String courseName = rs.getString("course_name");
-                int numStudentsEnrolled = rs.getInt("num_students_enrolled");
+                int numStudentsEnrolled = rs.getInt("number_of_students_enrolled");
                 String lecturerName = rs.getString("lecturer_name");
                 String roomAssigned = rs.getString("room_assigned");
 
