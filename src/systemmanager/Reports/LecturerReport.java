@@ -18,7 +18,7 @@ public class LecturerReport {
     public static void generateLecturerReport() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter either txt or csv for file output "); // ask user for file out preference
+        System.out.println("Enter either txt or csv for file output "); // ask user for file output preference
         String fileFormat = scanner.nextLine().trim().toLowerCase();
 
         if (!fileFormat.equals("txt") && !fileFormat.equals("csv")) {
@@ -33,7 +33,7 @@ public class LecturerReport {
             if (fileFormat.equals("csv")) { //file headers
                 writer.append("Lecturer name, Title, Module1, Module1 size, Module2, Module2 size, Module3, Module3 size, Module4, Module4 size, Class type\n");
             }
-                //SQL quearies to extract dat from tables and columns
+                //SQL quearies to extract data from tables and columns
             ResultSet staff = stmt.executeQuery("SELECT s.fname, s.lname, s.title, "
                     + "s.module_1, s.module_1 AS module1_size, "
                     + "s.module_2, s.module_2 AS module2_size, "
@@ -62,7 +62,7 @@ public class LecturerReport {
                 if (fileFormat.equals("csv")) { //write out to csv file
                     writer.append(String.join(",", lecturerName, title, module1, String.valueOf(module1Size), module2, String.valueOf(module2Size), module3, String.valueOf(module3Size), module4, String.valueOf(module4Size), classType));
                     writer.append("\n");
-                } else if (fileFormat.equals("txt")) { // write out to txt file
+                } else if (fileFormat.equals("txt")) { // append each String to the file then move to next line
                     writer.append("Lecturer Name: ").append(lecturerName).append("\n");
                     writer.append("Title: ").append(title).append("\n");
                     writer.append("Module1: ").append(module1).append(", Size: ").append(mod1SizeStr).append("\n");
