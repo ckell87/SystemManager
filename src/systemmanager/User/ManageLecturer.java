@@ -7,6 +7,7 @@ package systemmanager.User;
 import java.sql.SQLException;
 import java.util.Scanner;
 import systemmanager.DatabaseConnection;
+import systemmanager.Reports.LecturerReport;
 
 /**
  *
@@ -17,13 +18,13 @@ public class ManageLecturer {
     private final ManageOffice officeManager;
 
     public ManageLecturer() {
-        this.officeManager = new ManageOffice();
+        this.officeManager = new ManageOffice();// new manager object created to utilise change username/pssword methods
     }
 
     public void lecturerManager() throws SQLException {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Lecturer Manager Menu:");
+        System.out.println("Lecturer Manager Menu:"); //lectuer sub menu for access to lectuer only options
         System.out.println("1. Change username");
         System.out.println("2. Change password");
         System.out.println("3. Generate Lecturer report");
@@ -33,13 +34,13 @@ public class ManageLecturer {
 
         switch (choice) {
             case 1:
-                changeUsername();
+                changeUsername(); // call method to change username
                 break;
             case 2:
-                changePassword();
+                changePassword();// call method to change password
                 break;
             case 3:
-                generateLecturerReport();
+                LecturerReport.generateLecturerReport();// call method to generate report
                 break;
             case 4:
                 System.out.println("Returning to main menu.");
@@ -50,14 +51,12 @@ public class ManageLecturer {
     }
 
     public void changeUsername() throws SQLException {
-        officeManager.changeUsername();
+        officeManager.changeUsername(); // utalise method in officemanager to change username
     }
 
-    public void changePassword() throws SQLException {
+    public void changePassword() throws SQLException { //// utalise method in officemanager to change username
         officeManager.changePassword();
     }
 
-    public void generateLecturerReport() {
-        
-    }
+    
 }
