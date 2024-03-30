@@ -7,10 +7,9 @@ package systemmanager.User;
 import java.sql.SQLException;
 import java.util.Scanner;
 import systemmanager.DatabaseConnection;
-import static systemmanager.Reports.CourseReport.generateCourseReport;
-import static systemmanager.User.ManageAdmin.addNewUser;
-import static systemmanager.User.ManageAdmin.deleteUser;
-import static systemmanager.User.ManageAdmin.updateUser;
+import systemmanager.Reports.CourseReport;
+import systemmanager.Reports.LecturerReport;
+import systemmanager.Reports.StudentsReport;
 
 /**
  *
@@ -18,7 +17,7 @@ import static systemmanager.User.ManageAdmin.updateUser;
  */
 public class ManageOffice {
 
-    public void officeManager() throws SQLException {
+    public void officeManager() throws SQLException { //office staff sub menu to handle options only available to office staff
         // main method for office user management
         Scanner sc = new Scanner(System.in);
 
@@ -34,19 +33,19 @@ public class ManageOffice {
 
         switch (choice) {
             case 1:
-                changeUsername();
+                changeUsername();// call method to change username
                 break;
             case 2:
-                changePassword();
+                changePassword();// call method to change password
                 break;
             case 3:
-                generateCourseReport();
+                CourseReport.generateCourseReport();// call method to generate course report
                 break;
             case 4:
-                generateStudentReport();
+                StudentsReport.generateStudentsReport();// call method to generate student report
                 break;
             case 5:
-                //generateLecturerReport();
+                LecturerReport.generateLecturerReport();// call method to generate lecturer report
                 break;
             case 6:
                 System.out.println("Returning to main menu.");
@@ -56,7 +55,7 @@ public class ManageOffice {
         }
     }
 
-    public void changeUsername() throws SQLException {
+    public void changeUsername() throws SQLException { //method to change username once username and password match database
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your username: ");
         String username = sc.nextLine().trim();
@@ -74,7 +73,7 @@ public class ManageOffice {
         }
     }
 
-    public void changePassword() throws SQLException {
+    public void changePassword() throws SQLException {//method to change password once username and password match database
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your username: ");
         String username = sc.nextLine().trim();
@@ -91,7 +90,4 @@ public class ManageOffice {
         }
     }
 
-    private void generateStudentReport() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
