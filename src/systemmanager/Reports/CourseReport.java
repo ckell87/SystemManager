@@ -37,7 +37,7 @@ public class CourseReport {
         String query = "SELECT "
                 + "s.module AS module, "
                 + "c.course_name AS course_name, "
-                + "COUNT(DISTINCT s.student_id) AS num_students_enrolled, "
+                + "COUNT(DISTINCT s.student_id) AS number_of_students_enrolled, "
                 + "CONCAT(staff.fname, ' ', staff.lname) AS lecturer_name, "
                 + "c.room_number AS room_assigned "
                 + "FROM "
