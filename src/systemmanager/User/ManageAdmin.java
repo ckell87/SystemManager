@@ -52,7 +52,7 @@ public class ManageAdmin {
                 default:
                     System.out.println("Invalid choice.");
             }
-        }  while (choice != 4); // loop back to sub menu
+        } while (choice != 4); // loop back to sub menu
     }
 
     public static void addNewUser() { //method to distingush which staff member to add. will direct to appropriate specific add user method.

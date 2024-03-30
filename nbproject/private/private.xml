@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/DatabaseConnection.java</file>
             <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/User/ManageAdmin.java</file>
+            <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/Reports/LecturerReport.java</file>
             <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/User/ManageLecturer.java</file>
             <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/MainSystemMenu.java</file>
-            <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/LoginInterface.java</file>
+            <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/Reports/StudentsReport.java</file>
             <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/SystemManager.java</file>
+            <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/Reports/CourseReport.java</file>
             <file>file:/C:/Users/under/Documents/NetBeansProjects/SystemManager/src/systemmanager/User/ManageOffice.java</file>
         </group>
     </open-files>

@@ -53,13 +53,13 @@ public class StudentsReport {
                 String module3 = studentInfo.getString("module_3");
                 String grade3 = getGradeString(studentInfo.getString("grade_3"));
                 String module4 = studentInfo.getString("module_4");
-                String grade4 = getGradeString(studentInfo.getString("grade_4")); 
+                String grade4 = getGradeString(studentInfo.getString("grade_4"));
 
                 if (fileFormat.equals("csv")) { // write data to file in csv format
                     writer.append(String.join(",", studentName, programme, module1, grade1, module2, grade2, module3, grade3, module4, grade4));
                     writer.append("\n");
                 } else if (fileFormat.equals("txt")) { // write data to file if txt format
- 
+
                     // append each String to the file, insert comma, then move to next line
                     writer.append("Student Name: ").append(studentName).append("\n");
                     writer.append("Programme: ").append(programme).append("\n");
@@ -76,10 +76,12 @@ public class StudentsReport {
             e.printStackTrace(); // print where error occured
         }
     }
-/**
-*method to retrive grades which are less than 40 and return that they need "to be repeated".
-* any null values indicated that module is "to be completed"
- */
+
+    /**
+     * method to retrive grades which are less than 40 and return that they need
+     * "to be repeated". any null values indicated that module is "to be
+     * completed"
+     */
     private static String getGradeString(String grade) {
         if (grade == null || grade.isEmpty()) {
             return "to be completed";

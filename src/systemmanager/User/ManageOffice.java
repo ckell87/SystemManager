@@ -54,8 +54,7 @@ public class ManageOffice {
                 default:
                     System.out.println("Invalid choice.");
             }
-        }
-        while(choice != 4); // loop back to sub menu until exit to main menu chosen
+        } while (choice != 4); // loop back to sub menu until exit to main menu chosen
     }
 
     public void changeUsername() throws SQLException { //method to change username once username and password match database

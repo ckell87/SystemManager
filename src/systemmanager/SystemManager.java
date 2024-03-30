@@ -8,7 +8,8 @@ import systemmanager.Reports.StudentsReport;
 import java.sql.SQLException;
 import systemmanager.Reports.CourseReport;
 
-/** link to github  https://github.com/ckell87/SystemManager.git
+/**
+ * link to github https://github.com/ckell87/SystemManager.git
  *
  * @author under
  */

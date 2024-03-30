@@ -33,7 +33,7 @@ public class LecturerReport {
             if (fileFormat.equals("csv")) { //file headers
                 writer.append("Lecturer name, Title, Module1, Module1 size, Module2, Module2 size, Module3, Module3 size, Module4, Module4 size, Class type\n");
             }
-                //SQL quearies to extract data from tables and columns
+            //SQL quearies to extract data from tables and columns
             ResultSet staff = stmt.executeQuery("SELECT s.fname, s.lname, s.title, "
                     + "s.module_1, s.module_1 AS module1_size, "
                     + "s.module_2, s.module_2 AS module2_size, "
@@ -79,10 +79,12 @@ public class LecturerReport {
             e.printStackTrace();
         }
     }
-/**method to get class size.
- * iterate over the commas and return each number  if not empty
- * 
- */
+
+    /**
+     * method to get class size. iterate over the commas and return each number
+     * if not empty
+     *
+     */
     private static int getClassSize(String sizeString) {
         if (sizeString == null || sizeString.isEmpty()) {
             return 0;
