@@ -19,17 +19,19 @@ public class ManageLecturer {
 
     public ManageLecturer() {
         this.officeManager = new ManageOffice();// new manager object created to utilise change username/pssword methods
+        
     }
 
     public void lecturerManager() throws SQLException {
         Scanner sc = new Scanner(System.in);
-
+        int choice;
+    do{
         System.out.println("Lecturer Manager Menu:"); //lectuer sub menu for access to lectuer only options
         System.out.println("1. Change username");
         System.out.println("2. Change password");
         System.out.println("3. Generate Lecturer report");
         System.out.println("4. Back to main menu");
-        int choice = sc.nextInt();
+        choice = sc.nextInt();
         sc.nextLine(); // consume newline character
 
         switch (choice) {
@@ -48,13 +50,15 @@ public class ManageLecturer {
             default:
                 System.out.println("Invalid choice.");
         }
+    }while (choice != 4); // loop back to sub menu until return to main menu chosen
+    
     }
 
     public void changeUsername() throws SQLException {
         officeManager.changeUsername(); // utalise method in officemanager to change username
     }
 
-    public void changePassword() throws SQLException { //// utalise method in officemanager to change username
+    public void changePassword() throws SQLException { //// utilise method in officemanager to change username
         officeManager.changePassword();
     }
 

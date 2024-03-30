@@ -20,39 +20,42 @@ public class ManageOffice {
     public void officeManager() throws SQLException { //office staff sub menu to handle options only available to office staff
         // main method for office user management
         Scanner sc = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("Office Manager Menu:");
+            System.out.println("1. Change username");
+            System.out.println("2. Change password");
+            System.out.println("3. Generate Course report");
+            System.out.println("4. Generate Student report");
+            System.out.println("5. Generate Lecturer report");
+            System.out.println("6. Back to main menu");
+            choice = sc.nextInt();
+            sc.nextLine(); // consume newline character
 
-        System.out.println("Office Manager Menu:");
-        System.out.println("1. Change username");
-        System.out.println("2. Change password");
-        System.out.println("3. Generate Course report");
-        System.out.println("4. Generate Student report");
-        System.out.println("5. Generate Lecturer report");
-        System.out.println("6. Back to main menu");
-        int choice = sc.nextInt();
-        sc.nextLine(); // consume newline character
-
-        switch (choice) {
-            case 1:
-                changeUsername();// call method to change username
-                break;
-            case 2:
-                changePassword();// call method to change password
-                break;
-            case 3:
-                CourseReport.generateCourseReport();// call method to generate course report
-                break;
-            case 4:
-                StudentsReport.generateStudentsReport();// call method to generate student report
-                break;
-            case 5:
-                LecturerReport.generateLecturerReport();// call method to generate lecturer report
-                break;
-            case 6:
-                System.out.println("Returning to main menu.");
-                break;
-            default:
-                System.out.println("Invalid choice.");
+            switch (choice) {
+                case 1:
+                    changeUsername();// call method to change username
+                    break;
+                case 2:
+                    changePassword();// call method to change password
+                    break;
+                case 3:
+                    CourseReport.generateCourseReport();// call method to generate course report
+                    break;
+                case 4:
+                    StudentsReport.generateStudentsReport();// call method to generate student report
+                    break;
+                case 5:
+                    LecturerReport.generateLecturerReport();// call method to generate lecturer report
+                    break;
+                case 6:
+                    System.out.println("Returning to main menu.");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
         }
+        while(choice != 4); // loop back to sub menu until exit to main menu chosen
     }
 
     public void changeUsername() throws SQLException { //method to change username once username and password match database

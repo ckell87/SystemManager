@@ -25,29 +25,34 @@ public class ManageAdmin {
     public void adminManager() throws SQLException {
         // main method for admin user management
         Scanner sc = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("Admin Manager Menu:");
+            //admin sub menu
+            System.out.println("1. Add new user");
+            System.out.println("2. Delete user");
+            System.out.println("3. Alter User details");
+            System.out.println("4. Back to main menu");
+            choice = sc.nextInt();
+            sc.nextLine();
 
-        System.out.println("Admin Manager Menu:"); //admin sub menu
-        System.out.println("1. Add new user");
-        System.out.println("2. Delete user");
-        System.out.println("3. Alter User details");
-        System.out.println("4. Back to main menu");
-        int choice = sc.nextInt();
-
-        switch (choice) {
-            case 1:
-                addNewUser();// call method to add new user
-                break;
-            case 2:
-                deleteUser(); // call method to delete users
-                break;
-            case 3:
-                updateUser();// call method to update user details
-            case 4:
-                System.out.println("Returning to main menu...");
-                break;
-            default:
-                System.out.println("Invalid choice.");
-        }
+            switch (choice) {
+                case 1:
+                    addNewUser();// call method to add new user
+                    break;
+                case 2:
+                    deleteUser(); // call method to delete users
+                    break;
+                case 3:
+                    updateUser();// call method to update user details
+                    break;
+                case 4:
+                    System.out.println("Returning to main menu...");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }  while (choice != 4); // loop back to sub menu
     }
 
     public static void addNewUser() { //method to distingush which staff member to add. will direct to appropriate specific add user method.
@@ -68,6 +73,7 @@ public class ManageAdmin {
             default:
                 System.out.println("Invalid role entered");
                 break;
+
         }
     }
 
